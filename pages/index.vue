@@ -46,6 +46,16 @@
                 single-line
             ></v-textarea>
           </v-card-text>
+          <!-- add copy button on right corner -->
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              @click="copyText"
+              icon
+            >
+              <v-icon>mdi-content-copy</v-icon>
+            </v-btn>
+          </v-card-actions>
         </v-card>
       </v-col>
       <v-col cols="12" md="6">
@@ -65,9 +75,12 @@
             </div>
           </v-card-title>
           <v-card-text>
-            <v-container>
+            <v-textarea
+            v-model="result"
+            readonly
+            >
               {{ result }}
-            </v-container>
+            </v-textarea>
           </v-card-text>
           <!-- add copy button on right corner -->
           <v-card-actions>
@@ -138,7 +151,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translate(0%, -10%);
 }
 .v-container {
   height: 100%;
