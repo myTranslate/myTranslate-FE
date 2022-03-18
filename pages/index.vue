@@ -9,7 +9,9 @@
               <v-row>
                 <v-col cols="15" md="10">
                 <template>
-                  <v-tabs>
+                  <v-tabs
+                    v-model="selectedLanguage"
+                  >
                     <v-tab
                       v-for="item in languages"
                       :key="item"
@@ -50,7 +52,9 @@
         <v-card>
           <v-card-title primary-title>
             <div>
-              <v-tabs>
+              <v-tabs
+              v-model="tobeTranslateLanguage"
+              >
                   <v-tab
                     v-for="item in languages"
                     :key="item"
@@ -62,7 +66,7 @@
           </v-card-title>
           <v-card-text>
             <v-container>
-              {{ text }}
+              {{ result }}
             </v-container>
           </v-card-text>
           <!-- add copy button on right corner -->
@@ -100,18 +104,30 @@
     data () { 
       return{
       languages : ['Indonesia', 'English', 'Arabic'],
-      selectedLanguage : 'Indonesia',
-      tobeTranslateLanguage : 'English',
+      selectedLanguage : 1,
+      tobeTranslateLanguage : 1,
       text : '',
+      result: '',
     }
     },
     methods: {
       switchLanguage: function() {
-        this.tobeTranslateLanguage = this.selectedLanguage;
-        this.selectedLanguage = this.languages[0];
+        var temp = this.selectedLanguage;
+        this.selectedLanguage = this.tobeTranslateLanguage;
+        this.tobeTranslateLanguage = temp;
       },
       copyText: function() {
         navigator.clipboard.writeText(this.text);
+      },
+      translate: function() {
+        this.result = '';
+        if(this.text == '') {
+          alert('Please enter text to translate');
+        } else {
+          if(this.selectedLanguage == this.tobeTranslateLanguage){
+            this.result = this.text;
+          }
+        }
       }
     }
   }
