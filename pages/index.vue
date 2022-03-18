@@ -39,7 +39,7 @@
             <!-- create text area -->
             <v-textarea
                v-model="text"
-                label="Message"
+                label="put your text here"
                 counter
                 maxlength="200"
                 full-width
