@@ -116,9 +116,10 @@
   export default {
     data () { 
       return{
-      languages : ['Indonesia', 'English', 'Arabic'],
+      languages : ['Indonesia', 'English', 'Arabic', 'Chinese'],
+      index_langueages : ['id', 'en', 'ar', 'zh'],
       selectedLanguage : 1,
-      tobeTranslateLanguage : 1,
+      tobeTranslateLanguage : 0,
       text : '',
       result: '',
     }
@@ -132,13 +133,18 @@
       copyText: function() {
         navigator.clipboard.writeText(this.text);
       },
-      translate: function() {
+      translate: async function() {
         this.result = '';
         if(this.text == '') {
           alert('Please enter text to translate');
         } else {
           if(this.selectedLanguage == this.tobeTranslateLanguage){
             this.result = this.text;
+          } else {
+            var url = 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=' + this.index_langueages[this.selectedLanguage] + '&tl=' + this.index_langueages[this.tobeTranslateLanguage] + '&dt=t&q=' + this.text;
+            var response = await fetch(url);
+            var data = await response.json();
+            this.result = data[0][0][0];
           }
         }
       }
