@@ -41,7 +41,7 @@
                v-model="text"
                 label="put your text here"
                 counter
-                maxlength="200"
+                maxlength="500"
                 full-width
                 single-line
             ></v-textarea>

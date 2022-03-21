@@ -1,5 +1,7 @@
 # myTranslate
 
+![preview](./static/1.png)
+
 ## Build Setup
 
 ```bash
